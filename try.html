@@ -1,0 +1,77 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {
+        'packages':['geochart'],
+        // Note: you will need to get a mapsApiKey for your project.
+        // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+        'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+      });
+      google.charts.setOnLoadCallback(drawRegionsMap);
+
+      function drawRegionsMap() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Province');
+        data.addColumn('number', 'Count');
+        data.addColumn('string', 'Display');
+
+        data.addRows([
+
+          ['ID-AC', 1.8, 'Aceh'],
+          ['ID-BA', 1.76, 'Bali'],
+          ['ID-BB', 1.54, 'Bangka Belitung Islands'],
+
+          ['ID-BT', 2.01, 'Banten'],
+
+          ['ID-JA', 2.01, 'Jambi'],
+          ['ID-JB', 1.89, 'West Java'],
+          ['ID-JI', 1.96, 'East Java'],
+          ['ID-JK', 2.13, 'Jakarta'],
+
+          ['ID-JT', 1.92, 'Central Java'],
+          ['ID-KB', 2.01, 'West Kalimantan'],
+          ['ID-KI', 2.14, 'East Kalimantan'],
+          ['ID-KR', 2.29, 'Riau Islands'],
+          ['ID-KS', 1.47, 'South Kalimantan'],
+          ['ID-KT', 1.53, 'Central Kalimantan'],
+
+          ['ID-LA', 1.4, 'Lampung'],
+
+          ['ID-NT', 1.9, 'East Nusa Tenggara'],
+          ['ID-PA', 1.9, 'Papua'],
+
+          ['ID-RI', 1.9, 'Riau'],
+          ['ID-SB', 1.3, 'West Sumatra'],
+
+          ['ID-SN', 1.84, 'South Sulawesi'],
+          ['ID-SS', 1.87, 'South Sumatra'],
+
+          ['ID-SU', 2.09, 'North Sumatra'],
+          ['ID-YO', 1.85, 'Yogyakarta'],
+
+          ['ID-BE', null, 'BE'],['ID-GO', null, 'GO'],['ID-KU', null, 'KU'],['ID-MA', null, 'MA'],['ID-MU', null, 'MU'],
+          ['ID-NB', null, 'NB'],['ID-PB', null, 'PB'],['ID-SR', null, 'SR'],['ID-ST', null, 'ST'],['ID-SG', null, 'SG'],
+          ['ID-SA', null, 'SA']
+      ]);
+        var options = {region:'ID',
+          resolution:'provinces',
+          displayMode: ['regions', 'text'],
+          colorAxis: {colors: ['#dee3e1', '#4996ff', '#323185']},
+          backgroundColor: '#81d4fa',
+          datalessRegionColor: '#eab9f9',
+          defaultColor: '#f1f5f3'
+};
+        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+        var formatter = new google.visualization.PatternFormat('{1}');
+        formatter.format(data, [0, 2]);
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 1]);
+        chart.draw(view, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="regions_div" style="width: 900px; height: 500px;"></div>
+  </body>
+</html>
